@@ -11,7 +11,7 @@ import { WeatherData } from 'src/app/graph-service/weather-data.model';
 })
 export class GraphComponentComponent implements OnInit {
 
-@Input() weatherInput: WeatherInput;
+  @Input() weatherInput: WeatherInput;
 
   formData: WeatherData[];
   view: any[] = [600, 400];
@@ -32,7 +32,7 @@ export class GraphComponentComponent implements OnInit {
   };
 
   multi: any[];
-  
+
   constructor(private ngxChartsModule: NgxChartsModule,
     private weatherService: WeatherService) { }
 
@@ -41,26 +41,26 @@ export class GraphComponentComponent implements OnInit {
   }
 
   public getData() {
-    
+
     this.yAxisLabel = this.weatherInput.Metric;
     this.weatherService.getWeatherData(this.weatherInput)
       .subscribe((data) => {
         if (data) {
           this.formData = Object.assign([], data);
           this.generateGraph();
-        }        
+        }
       },
-      (err)=>{
-        this.formData= Object.assign([], new WeatherData());
-        this.multi= null;
-      }
+        (err) => {
+          this.formData = Object.assign([], new WeatherData());
+          this.multi = null;
+        }
       );
 
   }
 
   generateGraph() {
     let filteredData = Object.assign([], this.getFilterData());
-    
+
     let seriesData = filteredData.map((f) => {
       return {
         value: f.value,
