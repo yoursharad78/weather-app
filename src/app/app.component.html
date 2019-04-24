@@ -6,7 +6,7 @@
                 <nav class="navbar navbar-expand-md  navbar-light bg-light">
                     <ul class="navbar-nav" *ngFor='let wr of weatherRegions'>
                         <li>
-                            <a class="nav-link" name='RegionName'
+                            <a class="nav-link clickable" name='RegionName'
                                 [class.active]='weatherInput && weatherInput.RegionName === wr.RegionName'
                                 (click)='weatherInput.RegionName = wr.RegionName; childTemplate.getData()'>{{wr.RegionName}}</a>
                         </li>

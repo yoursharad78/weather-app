@@ -2,3 +2,8 @@
 .margin-left{
     margin-left: 5px !important;
 }
+
+a.clickable{
+    cursor: pointer;
+    cursor: hand;
+}
