@@ -59,15 +59,15 @@ export class GraphComponentComponent implements OnInit {
   }
 
   generateGraph() {
-    let filteredData = Object.assign([], this.getFilterData());
+    const filteredData = Object.assign([], this.getFilterData());
 
-    let seriesData = filteredData.map((f) => {
+    const seriesData = filteredData.map((f) => {
       return {
         value: f.value,
         name: new Date(f.year, f.month),
         month: f.month,
         year: f.year
-      }
+      };
     });
 
     this.multi = [
@@ -79,9 +79,15 @@ export class GraphComponentComponent implements OnInit {
   }
 
   getFilterData(): WeatherData[] {
-    return this.formData
-      .filter((f) => new Date(f.year, f.month) > this.weatherInput.BsRangeValue[0]
-        && new Date(f.year, f.month) < this.weatherInput.BsRangeValue[1]);
+
+    const fDate = new Date(this.weatherInput.BsRangeValue[0].getFullYear(), this.weatherInput.BsRangeValue[0].getMonth());
+    const tDate = new Date(this.weatherInput.BsRangeValue[1].getFullYear(), this.weatherInput.BsRangeValue[1].getMonth());
+
+    const data = this.formData
+      .filter((f) => new Date(f.year, (f.month - 1)) >= fDate
+        && new Date(f.year, (f.month - 1)) <= tDate);
+
+    return data;
   }
 
   onResize(event) {

@@ -30,6 +30,7 @@ export class AppComponent {
     this.datePickerConfig = Object.assign({}, {
       containerClass: 'theme-dark-blue',
       showWeekNumbers: false,
+      format: 'MM/DD/YYYY'
     });
   }
 

@@ -19,7 +19,6 @@ export class DatePipePipe implements PipeTransform {
             name: item.year + ' ' + monthNames[item.month - 1],
           };
         });
-        //return data;
       });
 
       return [...obj];
